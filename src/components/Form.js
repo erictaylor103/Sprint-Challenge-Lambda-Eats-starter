@@ -2,6 +2,45 @@ import axios from "axios";
 import React, {useState, useEffect} from "react";
 import * as yup from "yup";
 import "./Home.js";
+import styled from 'styled-components';
+
+const MainContainer = styled.div`
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 63px;
+    margin-bottom: 63px;
+    background-color: #f2f2f2;
+    text-align: center;  
+    padding: 12px 20px;
+    padding-bottom: 40px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 10), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  .input-fields{
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .submit{
+  width: 80%;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  }
+
+`
 
 
 
@@ -101,12 +140,13 @@ const formSchema = yup.object().shape({
             setFormState(newFormData);
     }
     return(
-        <div>
-            <h2>Please fill out our Pizza Order Form</h2>
+        <MainContainer>
+            <h2>Pizza Order Form</h2>
             <form onSubmit={formSubmit}>
                 <label htmlFor="name">
-                    Name
-                    <input 
+                    Name:
+                    <input
+                    className="input-fields"
                     id="name"
                     type="text"
                     name="name"
@@ -119,8 +159,9 @@ const formSchema = yup.object().shape({
                 <br/>
                 <br/>
                 <label htmlFor="email">
-                    Email
-                    <input 
+                    Email:
+                    <input
+                    className="input-fields" 
                     id="email"
                     type="text"
                     name="email"
@@ -133,7 +174,7 @@ const formSchema = yup.object().shape({
                 <br/>
                 <br/>
                 <label htmlFor="size">
-                    What size Pizza?
+                    Pizza Size:
                  <select 
                     id="size" 
                     name="size" 
@@ -191,7 +232,9 @@ const formSchema = yup.object().shape({
                     <br/>
                     <label htmlFor="instructions">
                     Special Instructions
-                    <input 
+                    <br/>
+                    <textarea
+                    className="input-fields" 
                     id="instructions"
                     type="text"
                     name="instructions"
@@ -201,8 +244,8 @@ const formSchema = yup.object().shape({
                     {errors.instructions.length > 0 ? (<p className="error">{errors.instructions}</p> ): null}
                 </label>
                 <pre>{JSON.stringify(post, null, 2)}</pre>  
-                <button disabled={submitDisabled}>Send Order</button>
+                <button className="submit" disabled={submitDisabled}>Send Order</button>
             </form>
-        </div>   
+        </MainContainer>   
       )  
   };
